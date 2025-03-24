@@ -8,13 +8,18 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
-
+    /* Fade-in transition for the whole page */
     body {
       background: rgba(255, 255, 255, 0.9);
       margin: 0;
       padding: 10px;
       color: #5a0c0c;
       text-align: center;
+      opacity: 0;
+      transition: opacity 0.8s ease-out;
+    }
+    body.loaded {
+      opacity: 1;
     }
 
     .music-button {
@@ -33,15 +38,21 @@
       cursor: pointer;
       font-size: 24px;
       font-weight: bold;
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
-
-
+    .music-button:hover {
+      transform: translateX(-50%) scale(1.1);
+    }
 
     .main-image {
       width: 100%;
       border-radius: 20px;
       margin-top: 10px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .main-image:hover {
+      transform: scale(1.02);
     }
 
     .container {
@@ -51,6 +62,11 @@
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .container:hover {
+      box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
     }
 
     h1 {
@@ -66,6 +82,10 @@
     .ornament {
       width: 200px;
       margin: 15px auto;
+      transition: transform 0.3s ease;
+    }
+    .ornament:hover {
+      transform: scale(1.05);
     }
 
     .names {
@@ -82,35 +102,43 @@
     }
 
     .invitation-block {
-    background: #fefaf7;
-    text-align: center;
-    padding: 40px 20px;
-  }
+      background: #fefaf7;
+      text-align: center;
+      padding: 40px 20px;
+      transition: background 0.3s ease;
+    }
+    .invitation-block:hover {
+      background: #fef2ec;
+    }
 
-  .photo-row {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
-  }
+    .photo-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
 
-  .photo-row img {
-    width: 180px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  }
-
-  @media (max-width: 600px) {
     .photo-row img {
-      width: 100px;
+      width: 180px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .photo-row img:hover {
+      transform: scale(1.05);
     }
 
-    .invitation-text {
-      font-size: 24px;
+    @media (max-width: 600px) {
+      .photo-row img {
+        width: 100px;
+      }
+
+      .invitation-text {
+        font-size: 24px;
+      }
     }
-  }
 
     .date {
       font-size: 28px;
@@ -156,15 +184,15 @@
       height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* align items to the top */
+      justify-content: flex-start;
       align-items: center;
       color: white;
       text-align: center;
       position: relative;
       width: 100%;
-      padding-top: 20px; /* adjust this value to move the content down from the top if needed */
+      padding-top: 20px;
+      transition: opacity 0.5s ease;
     }
-
 
     .overlay {
       position: absolute;
@@ -202,18 +230,22 @@
     }
 
     .map-section {
-      background: rgba(255, 255, 255, 0.9); /* Light background */
+      background: rgba(255, 255, 255, 0.9);
       padding: 40px;
       text-align: center;
       border-radius: 10px;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
       max-width: 600px;
       margin: 40px auto;
+      transition: transform 0.3s ease;
+    }
+    .map-section:hover {
+      transform: translateY(-5px);
     }
 
     .map-section h2 {
       font-size: 32px;
-      color: #4B0082; /* Purple text color */
+      color: #4B0082;
       margin-bottom: 10px;
     }
 
@@ -229,6 +261,10 @@
       border-radius: 10px;
       border: 2px solid #4B0082;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    .map-section iframe:hover {
+      transform: scale(1.02);
     }
 
     form {
@@ -238,6 +274,10 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    form:hover {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
     }
 
     input[type="text"] {
@@ -248,6 +288,10 @@
       border-radius: 20px;
       outline: none;
       margin-bottom: 20px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus {
+      border-color: #8B0000;
     }
 
     label {
@@ -266,6 +310,10 @@
       display: flex;
       align-items: center;
       margin-bottom: 8px;
+      transition: color 0.3s ease;
+    }
+    .radio-group label:hover {
+      color: #8B0000;
     }
 
     .radio-group input[type="radio"] {
@@ -280,10 +328,11 @@
       border: none;
       border-radius: 10px;
       cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
-
     button:hover {
       background-color: #a20000;
+      transform: scale(1.02);
     }
 
     .popup {
@@ -297,6 +346,11 @@
       justify-content: center;
       align-items: center;
       z-index: 10;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .popup.show {
+      opacity: 1;
     }
 
     .popup-content {
@@ -306,9 +360,12 @@
       text-align: center;
       font-size: 20px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+    .popup-content:hover {
+      transform: scale(1.02);
     }
 
-    /* Loader */
     .loader {
       border: 6px solid #f3f3f3;
       border-top: 6px solid #8B0000;
@@ -326,49 +383,49 @@
     }
 
     .image-section {
-    background: #fdf7f7;
-    padding: 40px 20px;
-    text-align: center;
-  }
-
-  .image-row {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-  }
-
-  .image-row img {
-    width: 250px;
-    height: auto;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-  }
-
-  .image-row img:hover {
-    transform: scale(1.05);
-  }
-
-  @media (max-width: 768px) {
-    .image-row img {
-      width: 90%;
+      background: #fdf7f7;
+      padding: 40px 20px;
+      text-align: center;
+      transition: background 0.3s ease;
     }
-  }
+    .image-section:hover {
+      background: #fceef1;
+    }
 
+    .image-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .image-row img {
+      width: 250px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .image-row img:hover {
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .image-row img {
+        width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
 
 <!-- 1. PHOTO + MUSIC -->
 <div class="container">
-  <span class="names" style="font-size: 50px; font-family: 'Great Vibes', cursive;">Марат & Әйгерім</span>
+  <span class="names" style="font-size: 50px; font-family: 'Great Vibes', cursive;">Марат &amp; Әйгерім</span>
 
   <!-- Wrap the image and button in a relative container -->
   <div style="position: relative; display: inline-block;">
-    <!-- <img src="/home/marat9/myphotos/2 курс 1 семестр/20221120_194119.jpg" alt="Couple" class="main-image"> -->
     <img src="starter.jpg" alt="Couple" class="main-image">
-
     <!-- Music Button Positioned on Bottom Center -->
     <div class="music-button" id="playBtn">
       <span id="playIcon">▶</span>
@@ -397,13 +454,11 @@
     }
   });
 
-  // Optional: Change icon automatically when audio ends or page loads with autoplay
   music.addEventListener("ended", () => {
     playIcon.textContent = "▶";
     isPlaying = false;
   });
 
-  // Optional: if autoplay is enabled and working, update icon
   window.addEventListener("load", () => {
     if (!music.paused) {
       playIcon.textContent = "❚❚";
@@ -412,32 +467,25 @@
   });
 </script>
 
-
 <!-- 2. ТЕКСТ ПРИГЛАШЕНИЯ -->
 <div class="container">
-
   <img src="https://static.tildacdn.com/tild6433-3135-4636-b232-613237353237/Group_6.png" class="ornament" alt="Kazakh Ornament">
-
   <h2 id="guest-name">Құрметті қонақтар!</h2>
-
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get('guest');
-  
+
     if (guestName) {
       const decodedName = decodeURIComponent(guestName);
       document.getElementById("guest-name").innerText = `Құрметті ${decodedName}!`;
     }
   </script>
-
-
   <p class="invitation-text">
     Сіздерді балаларымыз <br>
     <span class="names">Марат</span> <br>
     пен <br>
     <span class="names">Әйгерімнің</span>
   </p>
-
   <p class="invitation-text">
     үйлену тойына арналған салтанатты ақ дастарханымыздың<br>
     қадірлі қонағы болуға шақырамыз!
@@ -448,9 +496,7 @@
 <!-- 3. ДАТА И ВРЕМЯ СВАДЬБЫ -->
 <div class="container">
   <h1 style="font-family: 'Great Vibes', cursive;">Той салтанаты:</h1>
-
   <p class="date" style="font-family: 'Great Vibes', cursive;">10 тамыз 2025 жыл</p>
-
   <table class="calendar">
     <tr>
       <th>ДС</th>
@@ -477,10 +523,7 @@
       <td>25</td><td>26</td><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td>
     </tr>
   </table>
-
-
   <p class="time">Уақыты<br>18:00</p>
-
   <!-- 4. ТАЙМЕР ДО ДАТЫ -->
   <div class="countdown-section">
     <div class="overlay"></div>
@@ -502,13 +545,11 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <script>
   function startCountdown() {
     const targetDate = new Date("August 10, 2025 18:00:00").getTime();
-
     setInterval(() => {
       const now = new Date().getTime();
       const timeLeft = targetDate - now;
@@ -529,7 +570,6 @@
       document.getElementById("minutes").textContent = minutes;
     }, 1000);
   }
-
   startCountdown();
 </script>
 
@@ -540,48 +580,36 @@
     Ақтөбе қаласы<br>
     <span class="names">"Жерұйық"</span> мейрамханасы
   </p>
-
   <img src="https://static.tildacdn.com/tild6433-3135-4636-b232-613237353237/Group_6.png" class="ornament" alt="Kazakh Ornament">
-
   <h1>Той иелері:</h1>
   <p class="names" style="font-family: 'Marck Script', cursive;">Абай - Алия</p>
-
   <img src="https://static.tildacdn.com/tild6433-3135-4636-b232-613237353237/Group_6.png" class="ornament" alt="Kazakh Ornament" style="transform: rotate(180deg);">
 </div>
 
 <div class="container">
   <h1 id="nameInvite"></h1>
   <h1>Тойға келесіз бе?</h1>
-
   <form id="rsvp-form">
     <input type="text" id="name" placeholder="" hidden="hidden">
-
     <label>Жұбыңызбен келсеңіз, есімін бірге жазуыңызды сұраймыз</label>
-
     <div class="radio-group">
       <label><input type="radio" name="answer" value="Әрине, келемін" required> Әрине, келемін</label>
       <label><input type="radio" name="answer" value="Өкінішке орай, келе алмаймын"> Өкінішке орай, келе алмаймын</label>
     </div>
-
     <button type="submit">ЖІБЕРУ</button>
   </form>
-
   <img src="https://static.tildacdn.com/tild6433-3135-4636-b232-613237353237/Group_6.png" class="ornament" alt="Kazakh Ornament">
-
   <div class="invitation-block">
     <div class="photo-row">
       <img src="album1.jpg" alt="photo2">
       <img src="album2.jpg" alt="photo3">
     </div>
-
     <h1>Келіңіздер,<br>
-        тойымыздың<br>
-        қадірлі қонағы<br>
-        болыңыздар!</h1>
-  
+      тойымыздың<br>
+      қадірлі қонағы<br>
+      болыңыздар!</h1>
   </div>
   <img src="https://static.tildacdn.com/tild6433-3135-4636-b232-613237353237/Group_6.png" class="ornament" alt="Kazakh Ornament" style="transform: rotate(180deg);">
-
 </div>
 
 <div class="loader" id="loader"></div>
@@ -595,10 +623,9 @@
   </div>
 </div>
 
-
 <script>
   const botToken = "7878378323:AAEu9pBaaBYZxW2L8rhBZfD-QZAZvyrmpgo";
-  const chatId = "1360043549"; // e.g. -1001234567890 or your user ID
+  const chatId = "1360043549";
 
   const form = document.getElementById("rsvp-form");
   const loader = document.getElementById("loader");
@@ -606,12 +633,10 @@
 
   form.addEventListener("submit", function(e) {
     e.preventDefault();
-
     const name = document.getElementById("name").value;
     const answer = document.querySelector('input[name="answer"]:checked').value;
     const message = `📩 *Той RSVP*\n👤 Есім: ${name}\n✅ Жауап: ${answer}`;
 
-    // Show loader
     loader.style.display = "block";
 
     fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
@@ -623,22 +648,22 @@
         parse_mode: "Markdown"
       })
     })
-      .then(res => res.json())
-      .then(data => {
-        loader.style.display = "none";
-
-        if (data.ok) {
-          form.reset();
-          popup.style.display = "flex"; // Show popup
-        } else {
-          alert("Telegram-ға жіберу мүмкін болмады 😢");
-        }
-      })
-      .catch(error => {
-        loader.style.display = "none";
-        alert("Қате орын алды. Кейінірек қайталап көріңіз.");
-        console.error("Telegram Error:", error);
-      });
+            .then(res => res.json())
+            .then(data => {
+              loader.style.display = "none";
+              if (data.ok) {
+                form.reset();
+                popup.classList.add("show");
+                popup.style.display = "flex";
+              } else {
+                alert("Telegram-ға жіберу мүмкін болмады 😢");
+              }
+            })
+            .catch(error => {
+              loader.style.display = "none";
+              alert("Қате орын алды. Кейінірек қайталап көріңіз.");
+              console.error("Telegram Error:", error);
+            });
   });
 
   function closePopup() {
@@ -648,15 +673,12 @@
   document.addEventListener("DOMContentLoaded", function() {
     const urlParams = new URLSearchParams(window.location.search);
     const nameValue = urlParams.get('name');
-
-    document.getElementById("name").width=123
-
     if (nameValue) {
       document.getElementById("nameInvite").textContent = nameValue;
     }
+    // Add the 'loaded' class to fade in the page
+    document.body.classList.add("loaded");
   });
-
-
 </script>
 
 </body>
