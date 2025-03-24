@@ -550,11 +550,11 @@
 </div>
 
 <div class="container">
-
+  <h1 id="nameInvite"></h1>
   <h1>Тойға келесіз бе?</h1>
 
   <form id="rsvp-form">
-    <input type="text" id="name" placeholder="Есіміңіз" required>
+    <input type="text" id="name" placeholder="" hidden="hidden">
 
     <label>Жұбыңызбен келсеңіз, есімін бірге жазуыңызды сұраймыз</label>
 
@@ -644,6 +644,19 @@
   function closePopup() {
     document.getElementById("popup").style.display = "none";
   }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const nameValue = urlParams.get('name');
+
+    document.getElementById("name").width=123
+
+    if (nameValue) {
+      document.getElementById("nameInvite").textContent = nameValue;
+    }
+  });
+
+
 </script>
 
 </body>
